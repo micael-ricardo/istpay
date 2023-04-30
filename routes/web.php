@@ -37,7 +37,7 @@ Route::resource('/vagas', VagaController::class, ['names' => 'vagas']);
 // Route::get('despesas/dataTable', function () {
 //     return view('despesas.dataTable');
 // });
-Route::post('/vagas/create', [VagaController::class, 'store'])->name('vagas.salvar');
+Route::post('/vagas/cadastro', [VagaController::class, 'create'])->name('vagas.cadastro');
 // Route::get('/despesas/{id}/editar', [DespesaController::class, 'edit'])->name('despesas.editar');
 // Route::patch('/despesas/{id}/editar', [DespesaController::class, 'update'])->name('despesas.atualizar');
 // Route::delete('/despesas/{id}', [DespesaController::class, 'destroy'])->name('despesas.delete');
