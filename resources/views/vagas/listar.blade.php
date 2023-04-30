@@ -16,15 +16,15 @@
     <table id="TableVagas" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
-                {{-- <th>Nome</th>
-                <th>E-mail</th>
-                <th>Criado em</th>
-                <th>Atualizado em</th> --}}
+                <th>Titulo</th>
+                <th>Descricao</th>
+                <th>Tipo</th>
+                <th>Pausada</th>
+                <th>Data Cadastro</th>
+                <th>Ações</th> 
             </tr>
         </thead>
         <tbody>
-            <!-- Os dados serão adicionados dinamicamente pelo DataTables -->
         </tbody>
     </table>
 </div>
@@ -52,5 +52,7 @@
 </script>
 {{-- datatable --}}
 <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+ {{-- moment --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script src="{{ asset('js/DataTableVagas.js') }}"></script>
