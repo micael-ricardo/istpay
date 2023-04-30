@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VagaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,15 @@ Route::post('/auth',[LoginController::class,'auth'])->name('login.auth');
 Route::get('/cadastro', [LoginController::class, 'create'])->name('login.cadastro');
 
 Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
+
+
+// Despesas
+Route::resource('/vagas', VagaController::class, ['names' => 'vagas']);
+// Route::get('despesasDataTable', [DespesaController::class, 'dataTable'])->name('despesasDataTable');
+// Route::get('despesas/dataTable', function () {
+//     return view('despesas.dataTable');
+// });
+Route::post('/vagas/create', [VagaController::class, 'store'])->name('vagas.salvar');
+// Route::get('/despesas/{id}/editar', [DespesaController::class, 'edit'])->name('despesas.editar');
+// Route::patch('/despesas/{id}/editar', [DespesaController::class, 'update'])->name('despesas.atualizar');
+// Route::delete('/despesas/{id}', [DespesaController::class, 'destroy'])->name('despesas.delete');
