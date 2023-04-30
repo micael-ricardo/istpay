@@ -12,7 +12,7 @@
             <li class="nav-item">
                 <form action="/logout" method="POST">  
                     @csrf
-                    {{-- <a href="{{ route('logout') }}" class="nav-link">Sair  <i class="bi bi-box-arrow-right"></i></a> --}}
+                    <a href="{{ route('login.form') }}" class="nav-link">Sair  <i class="bi bi-box-arrow-right"></i></a>
                 </form>
             </li>
         </ul>

@@ -1,23 +1,52 @@
-@if($mensagem = Session::get('erro'))
-{{ $mensagem }}
-@endif
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        {{ $error }} <br>
-    @endforeach
-@endif
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    {{-- Bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    {{-- Estilo do Login --}}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
 
-<form action="{{ route('login.auth')}}" method="post">
-@csrf
+<body>
+    <div class="container">
+        <h1 class="mt-2">Login</h1>
+        @if ($mensagem = Session::get('erro'))
+            {{ $mensagem }}
+        @endif
 
-Email: <br> <input type="email" name="email"> <br>
-Senha: <br> <input type="password" name="password"> <br>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                {{ $error }} <br>
+            @endforeach
+        @endif
 
-<input type="checkbox" name="remember"> Lembrar-me <br>
+        <form action="{{ route('login.auth') }}" method="post">
+            @csrf
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
 
-<button type="submit"> Entrar </button>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Lembrar-me</label>
+                <p><a href="#">Esqueceu a senha?</a></p>
+                <p>Não tem uma conta? <a href="#">Registre-se aqui</a>.</p>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Entrar</button>
+        </form>
+    </div>
 
 
+</body>
 
-</form>
+</html>

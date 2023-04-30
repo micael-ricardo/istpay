@@ -6,11 +6,11 @@
                     id="menu">
                     @auth
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a  href="{{ route('vagas.index') }}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-coin"></i><span class="ms-1  d-sm-inline">Vagas</span></a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a  href="{{ route('vagas.index') }}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span>
                             </a>
                         </li>
