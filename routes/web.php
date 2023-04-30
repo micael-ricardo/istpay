@@ -33,10 +33,7 @@ Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.d
 
 // Despesas
 Route::resource('/vagas', VagaController::class, ['names' => 'vagas']);
-// Route::get('despesasDataTable', [DespesaController::class, 'dataTable'])->name('despesasDataTable');
-// Route::get('despesas/dataTable', function () {
-//     return view('despesas.dataTable');
-// });
+
 Route::post('/vagas/cadastro', [VagaController::class, 'create'])->name('vagas.cadastro');
 // Route::get('/despesas/{id}/editar', [DespesaController::class, 'edit'])->name('despesas.editar');
 // Route::patch('/despesas/{id}/editar', [DespesaController::class, 'update'])->name('despesas.atualizar');

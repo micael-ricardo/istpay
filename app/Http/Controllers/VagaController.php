@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use  App\Models\Vaga;
+// use yajara;
+
 
 class VagaController extends Controller
 {
@@ -14,37 +16,7 @@ class VagaController extends Controller
     {
         return view('vagas/listar');
     }
-
-        // Datatable
-        public function dataTable()
-        {
-            // Pegar dados da tabela
-            $vagas = Vaga::all();
-              // chamar a API Resource
-            //   $vagas_resource = UsuariosResource::collection($vagas);
     
-            // $data = $usuario_despesas_resource->map(function ($usuario) {
-            //     return [
-            //         'nome' => $usuario->nome,
-            //         'email' => $usuario->email,
-            //         'cep' => $usuario->cep,
-            //         'estado' => $usuario->estado,
-            //         'cidade' => $usuario->cidade,
-            //         'bairro' => $usuario->bairro,
-            //         'rua' => $usuario->rua,
-            //         'numero' => $usuario->numero,
-            //         'telefone' => $usuario->telefone,
-            //         'nivel_acesso' => $usuario->nivel_acesso,
-            //         'created_at' => $usuario->created_at->format('d-m-Y H:i'),
-            //         'id' => $usuario->id,
-            //     ];
-            // })->toArray();
-    
-            // $usuario_despesas_resource = DataTables::of($data);
-            // return $usuario_despesas_resource->make(true);
-    
-        }
-
     /**
      * Show the form for creating a new resource.
      */
