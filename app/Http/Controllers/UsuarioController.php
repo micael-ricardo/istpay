@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use  App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -27,7 +29,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = $request->all();
+        $usuario['password'] = bcrypt($request);
+        $usuario = User::create($usuario);
+
+        Auth::login($usuario);
+
+        return redirect()->route('adm.dashboard');
     }
 
     /**

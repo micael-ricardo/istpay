@@ -11,7 +11,7 @@
 <form action="{{ route('usuario.store')}}" method="post">
 @csrf
 
-Nome: <br> <input  name="nome"> <br>
+Nome: <br> <input type="text"  name="name"> <br>
 Email: <br> <input type="email" name="email"> <br>
 Senha: <br> <input type="password" name="password"> <br>
 
