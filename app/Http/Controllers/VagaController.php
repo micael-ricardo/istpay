@@ -16,7 +16,7 @@ class VagaController extends Controller
     {
         return view('vagas/listar');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -35,8 +35,6 @@ class VagaController extends Controller
             'descricao' => $request->descricao,
             'tipo' => $request->tipo,
         ]);
-
-
         if ($vagas) { 
             return redirect()->route('vagas.index')->with('message', 'Registro inserido com sucesso!'); 
         } else { 
