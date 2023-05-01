@@ -197,7 +197,11 @@ $(document).on("submit", "#formPausar", function (event) {
             pausada: pausada
         },
         success: function (response) {
-            window.location.reload();
+            toastr.success('Status Atualizado  com sucesso!');
+            $('#ModalDeletar').modal('hide');
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
