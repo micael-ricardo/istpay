@@ -58,7 +58,7 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 var nome = row.titulo;
                 var btnEditar = '<a href="/despesas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
-                var btnDeletar = '<button type="button"  data-bs-target="#exampleModal"  data-bs-toggle="modal"  data-id=' + data + ' data-nome=' + nome + ' " class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
+                var btnDeletar = '<button type="button" data-bs-target="#exampleModal" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
                 return btnEditar + ' ' + btnDeletar;
             },
         },
