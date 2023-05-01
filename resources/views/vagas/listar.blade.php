@@ -28,8 +28,8 @@
             </tbody>
         </table>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        <!-- Modal De Delete -->
+        <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
             role="dialog" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -47,6 +47,30 @@
                             @method('DELETE')
                             <input type="hidden" name="id">
                             <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal de Pausar e Inicar Vaga --}}
+        <div class="modal fade" id="ModalPausar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            role="dialog" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modal-titulo"> {{-- Texto vem do js de acordo com o status da vaga --}} </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="modal-body" class="modal-body">
+                        {{-- Texto vem do js de acordo com o status da vaga --}}
+                    </div>
+                    <div class="modal-footer">
+                        <form id="formPausar" action="#" method="post">
+                            @csrf
+                            <input type="hidden" name="id">
+                            <input type="hidden" name="pausada">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar </button>
                         </form>
                     </div>
                 </div>

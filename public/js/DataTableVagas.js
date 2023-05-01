@@ -56,13 +56,19 @@ $(document).ready(function () {
             title: 'Ações',
             width: "100px",
             render: function (data, type, row) {
+                var pausada = row.pausada;
                 var nome = row.titulo;
                 var btnEditar = '<a href="/vagas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
                 var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
-                // var btnPausar = '<button type="button" data-bs-target="#ModalPausar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-play-btn-fill"></i></button>';
-                // <i class="bi bi-stop-btn-fill"></i>
-                return btnEditar + ' ' + btnDeletar;
-                // + ' ' + btnPausar
+                var btnPausar = '';
+                if (pausada) {
+                    btnPausar = '<button type="button" data-bs-target="#ModalPausar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '"  data-pause="' + pausada + '" class="btn btn-success btn-sm pausar-vaga"><i class="bi bi-play"></i></button>';
+                } else {
+                    btnPausar = '<button type="button" data-bs-target="#ModalPausar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" data-pause="' + pausada + '" class="btn btn-danger btn-sm pausar-vaga"><i class="bi bi-stop"></i></button>';
+                }
+
+                return btnEditar + ' ' + btnDeletar + ' ' + btnPausar;
+
             },
         },
     ];
@@ -121,6 +127,25 @@ $(document).on("click", ".excluir-vaga", function (e) {
     $('#ModalDeletar').modal('show');
 });
 
+
+// Adicione um evento de clique ao botão Pause e start
+
+$('#ModalPausar').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var pausada = button.data('pause');
+    var nome = button.data('nome');
+    var modal = $(this);
+    // Inserir texto de acordo com a o status da vaga
+    var titulo = pausada ? 'Iniciar vaga' : 'Pausar vaga';
+    var texto = pausada ? 'Tem certeza que deseja iniciar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?' : 'Tem certeza que deseja pausar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?';
+    modal.find('#modal-titulo').text(titulo);
+    modal.find('#modal-body').html(texto);
+    modal.find('input[name="id"]').val(button.data('id'));
+    modal.find('input[name="pausada"]').val(pausada ? 0 : 1);
+});
+
+
+// Concluir o delete
 $(document).on("submit", "#formExcluir", function (e) {
     e.preventDefault();
     var form = this;
@@ -147,6 +172,36 @@ $(document).on("submit", "#formExcluir", function (e) {
         },
         complete: function () {
             $('#ModalDeletar').modal('hide');
+        }
+    });
+});
+
+// Parar ou iniciar vaga
+$(document).on("submit", "#formPausar", function (event) {
+    event.preventDefault();
+    var form = $(this);
+    var id = form.find('input[name="id"]').val();
+    var pausada = form.find('input[name="pausada"]').val();
+    function showError() {
+        toastr.error('Ocorreu um erro ao atualizar o status da vaga.');
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/vagas/' + id + '/atualizar-status',
+        type: 'POST',
+        data: {
+            pausada: pausada
+        },
+        success: function (response) {
+            window.location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+            showError();
         }
     });
 });

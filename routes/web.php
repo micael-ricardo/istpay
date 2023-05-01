@@ -41,3 +41,5 @@ Route::get('/vagas/{id}/editar', [VagaController::class, 'edit'])->name('vagas.e
 Route::patch('/vagas/{id}/editar', [VagaController::class, 'update'])->name('vagas.atualizar');
 // Deletar
 Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->name('vagas.delete');
+// Atualizar Status da vaga
+Route::post('/vagas/{id}/atualizar-status', [VagaController::class, 'atualizarStatus'])->name('vagas.atualizar-status');

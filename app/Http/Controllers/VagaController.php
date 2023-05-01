@@ -9,51 +9,42 @@ use  App\Models\Vaga;
 
 class VagaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    // Tela de listar
     public function index()
     {
         return view('vagas/listar');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Tela de cadastro
     public function create()
     {
         return view('vagas/cadastro');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Inserir dados 
     public function store(Request $request)
     {
-        $vagas= Vaga::create([
+        $vagas = Vaga::create([
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
             'tipo' => $request->tipo,
         ]);
-        if ($vagas) { 
-            return redirect()->route('vagas.index')->with('message', 'Registro inserido com sucesso!'); 
-        } else { 
-            return redirect()->back()->with('error', 'Ocorreu um problema ao inserir o registro!'); 
-        } 
+        if ($vagas) {
+            return redirect()->route('vagas.index')->with('message', 'Registro inserido com sucesso!');
+        } else {
+            return redirect()->back()->with('error', 'Ocorreu um problema ao inserir o registro!');
+        }
     }
-    
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+    // Tela de Editar
     public function edit(string $id)
     {
         $vaga = Vaga::findOrFail($id);
         return view('vagas.cadastro', compact('vaga'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Atualizar
     public function update(Request $request, string $id)
     {
         $vaga = Vaga::findOrFail($id);
@@ -66,13 +57,22 @@ class VagaController extends Controller
         return redirect()->route('vagas.index')->with('success', 'vaga atualizada com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Delete
     public function destroy(string $id)
     {
         $vaga = Vaga::findOrFail($id);
         $vaga->delete();
+        return response()->json(['success' => true]);
+    }
+
+    // Atualizar status da vaga
+    public function atualizarStatus(Request $request, $id)
+    {
+        $vaga = Vaga::findOrFail($id);
+        // dd( $vaga);
+        $vaga->pausada = $request->input('pausada') ? true : false;
+        $vaga->save();
+
         return response()->json(['success' => true]);
     }
 }
