@@ -8,7 +8,7 @@
     @endforeach
 @endif
 
-<form action="{{ route('usuario.store')}}" method="post">
+<form action="{{ route('usuario.store') }}" method="post">
 @csrf
 
 Nome: <br> <input type="text"  name="name"> <br>

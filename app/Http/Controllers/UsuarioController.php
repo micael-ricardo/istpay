@@ -30,7 +30,9 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $usuario = $request->all();
-        $usuario['password'] = bcrypt($request);
+
+        $usuario['password'] = bcrypt($usuario['password']);
+    
         $usuario = User::create($usuario);
 
         Auth::login($usuario);
