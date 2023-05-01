@@ -45,7 +45,7 @@ $(document).ready(function () {
         {
             data: 'created_at',
             title: 'Data Cadastro',
-            width: "150px",
+            width: "120px",
             render: function (data, type, row) {
                 var dataFormatada = moment(data).format('DD/MM/YYYY HH:mm');
                 return dataFormatada;
@@ -54,12 +54,15 @@ $(document).ready(function () {
         {
             data: 'id',
             title: 'Ações',
-            width: "80px",
+            width: "100px",
             render: function (data, type, row) {
                 var nome = row.titulo;
-                var btnEditar = '<a href="/despesas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
-                var btnDeletar = '<button type="button" data-bs-target="#exampleModal" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
+                var btnEditar = '<a href="/vagas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
+                var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
+                // var btnPausar = '<button type="button" data-bs-target="#ModalPausar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-play-btn-fill"></i></button>';
+                // <i class="bi bi-stop-btn-fill"></i>
                 return btnEditar + ' ' + btnDeletar;
+                // + ' ' + btnPausar
             },
         },
     ];
@@ -115,7 +118,7 @@ $(document).on("click", ".excluir-vaga", function (e) {
     $('#formExcluir input[name="id"]').val(id);
 
     // Exiba o modal de exclusão
-    $('#exampleModal').modal('show');
+    $('#ModalDeletar').modal('show');
 });
 
 $(document).on("submit", "#formExcluir", function (e) {
@@ -131,7 +134,7 @@ $(document).on("submit", "#formExcluir", function (e) {
         success: function (response, status, xhr) {
             if (xhr.status === 200) {
                 toastr.success('Vaga excluída com sucesso!');
-                $('#exampleModal').modal('hide');
+                $('#ModalDeletar').modal('hide');
                 setTimeout(function () {
                     location.reload();
                 }, 1000);
@@ -143,7 +146,7 @@ $(document).on("submit", "#formExcluir", function (e) {
             showError();
         },
         complete: function () {
-            $('#exampleModal').modal('hide');
+            $('#ModalDeletar').modal('hide');
         }
     });
 });

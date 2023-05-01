@@ -1,22 +1,22 @@
 @extends('template/layout')
-{{-- @if (isset($vaga)) --}}
-{{-- @section('title', 'Editar Despesa') --}}
-{{-- @else --}}
+@if (isset($vaga))
+@section('title', 'Editar Vagas')
+@else
 @section('title', 'Cadastrar Vagas')
-{{-- @endif --}}
+@endif
 @section('conteudo')
 
-    {{-- <div class="titulo">
-        <h5>{{ isset($despesa) ? 'Editar Despesa' : 'Cadastro Despesas' }}</h5>
-    </div> --}}
+    <div class="titulo">
+        <h5>{{ isset($vaga) ? 'Editar Vagas' : 'Cadastro Vagas' }}</h5>
+    </div>
 
     {{-- @include('mensagens.mensagens') --}}
     <form method="POST" action="{{ isset($vaga) ? route('vagas.atualizar', $vaga->id) : route('vagas.store') }}">
         {{-- previne ataques CSRF --}}
         @csrf
-        {{-- @if (isset($despesa))
+        @if (isset($vaga))
             @method('PATCH')
-        @endif --}}
+        @endif
 
         <div class="row mt-4">
 
@@ -25,18 +25,16 @@
                 <input type="text" class="form-control" name="titulo" id="titulo"
                     value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" required>
             </div>
-
-
             <div class="form-group col-md-4">
                 <label for="tipo">Tipo:</label>
                 <select class="form-control select2" name="tipo" id="tipo" required>
                     <option value="">Selecione</option>
-                    <option {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'CLT' ? ' selected ' : '') }}
+                    <option {{ old('tipo', isset($vaga->tipo) && $vaga->tipo == 'CLT' ? ' selected ' : '') }}
                         value="CLT">CLT</option>
                     <option
-                        {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'Pessoa Jurídica' ? ' selected ' : '') }}
+                        {{ old('tipo', isset($vaga->tipo) && $vaga->tipo == 'Pessoa Jurídica' ? ' selected ' : '') }}
                         value="Pessoa Jurídica">Pessoa Jurídica</option>
-                    <option {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'Freelancer' ? ' selected ' : '') }}
+                    <option {{ old('tipo', isset($vaga->tipo) && $vaga->tipo == 'Freelancer' ? ' selected ' : '') }}
                         value="Freelancer">Freelancer</option>
                 </select>
             </div>

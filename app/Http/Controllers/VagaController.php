@@ -41,21 +41,14 @@ class VagaController extends Controller
             return redirect()->back()->with('error', 'Ocorreu um problema ao inserir o registro!'); 
         } 
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $vaga = Vaga::findOrFail($id);
+        return view('vagas.cadastro', compact('vaga'));
     }
 
     /**
@@ -63,7 +56,14 @@ class VagaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $vaga = Vaga::findOrFail($id);
+
+        $vaga->update([
+            'titulo' => $request->titulo,
+            'tipo' => $request->tipo,
+            'descricao' => $request->descricao,
+        ]);
+        return redirect()->route('vagas.index')->with('success', 'vaga atualizada com sucesso.');
     }
 
     /**

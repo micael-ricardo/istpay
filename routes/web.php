@@ -27,13 +27,17 @@ Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth',[LoginController::class,'auth'])->name('login.auth');
 
 Route::get('/cadastro', [LoginController::class, 'create'])->name('login.cadastro');
-
+ 
 Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
 
 
-// Despesas
+// vagas
 Route::resource('/vagas', VagaController::class, ['names' => 'vagas']);
+// cadastro
 Route::post('/vagas/cadastro', [VagaController::class, 'create'])->name('vagas.cadastro');
-// Route::get('/despesas/{id}/editar', [DespesaController::class, 'edit'])->name('despesas.editar');
-// Route::patch('/despesas/{id}/editar', [DespesaController::class, 'update'])->name('despesas.atualizar');
+// editar
+Route::get('/vagas/{id}/editar', [VagaController::class, 'edit'])->name('vagas.editar');
+// Atualizar
+Route::patch('/vagas/{id}/editar', [VagaController::class, 'update'])->name('vagas.atualizar');
+// Deletar
 Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->name('vagas.delete');
