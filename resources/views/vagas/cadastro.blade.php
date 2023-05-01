@@ -1,8 +1,8 @@
 @extends('template/layout')
 {{-- @if (isset($vaga)) --}}
-    {{-- @section('title', 'Editar Despesa') --}}
+{{-- @section('title', 'Editar Despesa') --}}
 {{-- @else --}}
-    @section('title', 'Cadastrar Vagas')
+@section('title', 'Cadastrar Vagas')
 {{-- @endif --}}
 @section('conteudo')
 
@@ -11,33 +11,47 @@
     </div> --}}
 
     {{-- @include('mensagens.mensagens') --}}
-    <form method="POST" action="{{ isset($despesa) ? route('vagas.atualizar', $despesa->id) : route('vagas.store') }}">
+    <form method="POST" action="{{ isset($vaga) ? route('vagas.atualizar', $vaga->id) : route('vagas.store') }}">
         {{-- previne ataques CSRF --}}
         @csrf
         {{-- @if (isset($despesa))
             @method('PATCH')
         @endif --}}
 
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" id="titulo" required>
-        
-        <label for="descricao">Descrição:</label>
-        <textarea name="descricao" id="descricao" required></textarea>
-        
-        <label for="tipo">Tipo:</label>
-        <select name="tipo" id="tipo" required>
-            <option value="CLT">CLT</option>
-            <option value="Pessoa Jurídica">Pessoa Jurídica</option>
-            <option value="Freelancer">Freelancer</option>
-        </select>
+        <div class="row mt-4">
 
-        <br><br>
+            <div class="form-group col-md-8">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo" id="titulo"
+                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" required>
+            </div>
 
-        <div class="col-md-12 mt-4">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar </button>
-            <a href="{{ route('vagas.index') }}" class="btn btn-danger"><i class="fa fa-times"></i>
-                Cancelar</a>
-        </div>
+
+            <div class="form-group col-md-4">
+                <label for="tipo">Tipo:</label>
+                <select class="form-control select2" name="tipo" id="tipo" required>
+                    <option value="">Selecione</option>
+                    <option {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'CLT' ? ' selected ' : '') }}
+                        value="CLT">CLT</option>
+                    <option
+                        {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'Pessoa Jurídica' ? ' selected ' : '') }}
+                        value="Pessoa Jurídica">Pessoa Jurídica</option>
+                    <option {{ old('tipo', isset($despesa->tipo) && $despesa->tipo == 'Freelancer' ? ' selected ' : '') }}
+                        value="Freelancer">Freelancer</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="descricao">Descricao:</label>
+                <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="2">{{ old('descricao', isset($vaga->descricao) ? $vaga->descricao : '') }}</textarea>
+            </div>
+
+            <div class="col-md-12 mt-4">
+                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar </button>
+                <a href="{{ route('vagas.index') }}" class="btn btn-danger"><i class="fa fa-times"></i>
+                    Cancelar</a>
+            </div>
     </form>
-    {{-- <script src="{{ asset('js/despesas.js') }}"></script> --}}
+
+    <script src="{{ asset('js/Vagas.js') }}"></script>
 @endsection
