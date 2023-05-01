@@ -23,7 +23,7 @@
             <div class="form-group col-md-8">
                 <label for="titulo">Título:</label>
                 <input type="text" class="form-control" name="titulo" id="titulo"
-                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" >
+                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="tipo">Tipo:</label>
