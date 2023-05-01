@@ -71,6 +71,8 @@ class VagaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vaga = Vaga::findOrFail($id);
+        $vaga->delete();
+        return response()->json(['success' => true]);
     }
 }
