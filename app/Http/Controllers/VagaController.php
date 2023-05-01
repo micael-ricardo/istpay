@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use  App\Models\Vaga;
-// use yajara;
+use App\Http\Requests\VagaRequest;
+
 
 
 class VagaController extends Controller
@@ -23,18 +24,15 @@ class VagaController extends Controller
     }
 
     // Inserir dados 
-    public function store(Request $request)
+    public function store(VagaRequest $request)
     {
-        $vagas = Vaga::create([
+         Vaga::create([
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
             'tipo' => $request->tipo,
         ]);
-        if ($vagas) {
-            return redirect()->route('vagas.index')->with('message', 'Registro inserido com sucesso!');
-        } else {
-            return redirect()->back()->with('error', 'Ocorreu um problema ao inserir o registro!');
-        }
+               
+        return redirect()->route('vagas.index')->with('success', 'Registro inserido com sucesso!');
     }
 
     // Tela de Editar

@@ -10,7 +10,7 @@
         <h5>{{ isset($vaga) ? 'Editar Vagas' : 'Cadastro Vagas' }}</h5>
     </div>
 
-    {{-- @include('mensagens.mensagens') --}}
+    @include('mensagens.mensagem')
     <form method="POST" action="{{ isset($vaga) ? route('vagas.atualizar', $vaga->id) : route('vagas.store') }}">
         {{-- previne ataques CSRF --}}
         @csrf
@@ -23,7 +23,7 @@
             <div class="form-group col-md-8">
                 <label for="titulo">Título:</label>
                 <input type="text" class="form-control" name="titulo" id="titulo"
-                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" required>
+                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" >
             </div>
             <div class="form-group col-md-4">
                 <label for="tipo">Tipo:</label>

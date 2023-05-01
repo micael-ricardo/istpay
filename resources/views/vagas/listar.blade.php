@@ -3,7 +3,7 @@
 @section('conteudo')
 
     <h5>Vagas</h5>
-    {{-- @include('mensagens.mensagens') --}}
+    @include('mensagens.mensagem')
 
     <!-- adc -->
     <div class="input-group mb-3">
