@@ -95,5 +95,7 @@ $(document).ready(function () {
                 "sLast": "Último"
             }
         },
+        lengthMenu: [ [10, 20, 50, -1], [10, 20, 50, "Todos"] ],
+        pageLength: 20
     });
 });

@@ -1,10 +1,10 @@
-{{-- @extends('dashboard/layout')
-@if (isset($despesa))
-    @section('title', 'Editar Despesa')
-@else
-    @section('title', 'Despesas')
-@endif
-@section('conteudo') --}}
+@extends('template/layout')
+{{-- @if (isset($vaga)) --}}
+    {{-- @section('title', 'Editar Despesa') --}}
+{{-- @else --}}
+    @section('title', 'Cadastrar Vagas')
+{{-- @endif --}}
+@section('conteudo')
 
     {{-- <div class="titulo">
         <h5>{{ isset($despesa) ? 'Editar Despesa' : 'Cadastro Despesas' }}</h5>
@@ -40,4 +40,4 @@
         </div>
     </form>
     {{-- <script src="{{ asset('js/despesas.js') }}"></script> --}}
-{{-- @endsection --}}
+@endsection

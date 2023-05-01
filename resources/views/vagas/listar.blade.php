@@ -1,5 +1,5 @@
 @extends('template/layout')
-@section('title', 'Despesas')
+@section('title', 'Vagas')
 @section('conteudo')
 
 <h5>Vagas</h5>

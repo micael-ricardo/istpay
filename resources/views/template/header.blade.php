@@ -5,7 +5,7 @@
         </a>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item text-light">
-                Bem vindo, {{ Auth::user()->nome }}!
+                Bem vindo, {{ Auth::user()->name }}!
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
