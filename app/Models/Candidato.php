@@ -14,5 +14,6 @@ class Candidato extends Model
         'email',
         'telefone',
         'curriculo',
+        'user_id'
     ];
 }

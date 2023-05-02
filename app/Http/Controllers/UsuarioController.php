@@ -17,21 +17,22 @@ class UsuarioController extends Controller
     {
     
         // Criação do usuário
-        $user = new User([
+        $user = User::create([
             'name' => $request->input('nome'),
             'email' => $request->input('email'),
             'password' =>  bcrypt($request->input('password')),
         ]);
-        $user->save();
 
+        $IdUser = $user->id;
         // Criação do candidato
         $candidato = new Candidato([
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'telefone' => $request->input('telefone'),
             'curriculo' => $request->input('curriculo'),
-            'user_id' => $user->id,
+            'user_id' =>  $IdUser,
         ]);
+
         $candidato->save();
         Auth::login($user);
         // Redirecionamento para a página de sucesso

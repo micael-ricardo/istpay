@@ -29,12 +29,12 @@
                 <input type="number" class="form-control" name="telefone" id="telefone"
                     value="{{ old('telefone', isset($vaga) ? $vaga->telefone : '') }}" required>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name="email" id="email"
                     value="{{ old('email', isset($vaga) ? $vaga->titulo : '') }}" required>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <label for="password">senha:</label>
                 <input type="password" class="form-control" name="password" id="password" autocomplete="new-password"
                     required>
