@@ -1,17 +1,17 @@
 @extends('template/layout')
 @if (isset($vaga))
-@section('title', 'Editar Vagas')
+    @section('title', 'Editar Candidatos')
 @else
-@section('title', 'Cadastrar Vagas')
+    @section('title', 'Cadastrar Candidatos')
 @endif
 @section('conteudo')
 
     <div class="titulo">
-        <h5>{{ isset($vaga) ? 'Editar Vagas' : 'Cadastro Vagas' }}</h5>
+        <h5>{{ isset($vaga) ? 'Editar Candidatos' : 'Cadastro Candidatos' }}</h5>
     </div>
 
     @include('mensagens.mensagem')
-    <form method="POST" action="{{ isset($vaga) ? route('vagas.atualizar', $vaga->id) : route('vagas.store') }}">
+    <form method="POST" action="{{ isset($vaga) ? route('candidatos.atualizar', $vaga->id) : route('candidatos.store') }}">
         {{-- previne ataques CSRF --}}
         @csrf
         @if (isset($vaga))
@@ -20,12 +20,24 @@
 
         <div class="row mt-4">
 
-            <div class="form-group col-md-8">
-                <label for="titulo">Título:</label>
-                <input type="text" class="form-control" name="titulo" id="titulo"
-                    value="{{ old('titulo', isset($vaga) ? $vaga->titulo : '') }}" required>
+            <div class="form-group col-md-4">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" name="nome" id="nome"
+                    value="{{ old('nome', isset($vaga) ? $vaga->titulo : '') }}" required>
             </div>
             <div class="form-group col-md-4">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" id="email"
+                    value="{{ old('email', isset($vaga) ? $vaga->titulo : '') }}" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="form-control" name="telefone" id="telefone"
+                    pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}"
+                    value="{{ old('telefone', isset($vaga) ? $vaga->telefone : '') }}" required>
+            </div>
+
+            {{-- <div class="form-group col-md-4">
                 <label for="tipo">Tipo:</label>
                 <select class="form-control select2" name="tipo" id="tipo" required>
                     <option value="">Selecione</option>
@@ -37,11 +49,11 @@
                     <option {{ old('tipo', isset($vaga->tipo) && $vaga->tipo == 'Freelancer' ? ' selected ' : '') }}
                         value="Freelancer">Freelancer</option>
                 </select>
-            </div>
+            </div> --}}
 
             <div class="form-group col-md-12">
-                <label for="descricao">Descricao:</label>
-                <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="2">{{ old('descricao', isset($vaga->descricao) ? $vaga->descricao : '') }}</textarea>
+                <label for="curriculo">Curriculo:</label>
+                <textarea class="form-control" name="curriculo" id="curriculo" cols="30" rows="5">{{ old('curriculo', isset($vaga->curriculo) ? $vaga->curriculo : '') }}</textarea>
             </div>
 
             <div class="col-md-12 mt-4">

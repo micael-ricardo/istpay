@@ -1,14 +1,14 @@
 @extends('template/layout')
-@section('title', 'Vagas')
+@section('title', 'Candidatos')
 @section('conteudo')
 
-    <h5>Vagas</h5>
+    <h5>Candidatos</h5>
     @include('mensagens.mensagem')
 
     <!-- adc -->
     <div class="input-group mb-3">
         <div class="input-group-append">
-            <a href="{{ route('vagas.create') }}" class="btn btn-success">Adicionar</a>
+            <a href="{{ route('candidatos.create') }}" class="btn btn-success">Adicionar</a>
             <button class="btn btn-info" type="button" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
                 <i class="fa fa-filter"></i> Filtros
             </button>
@@ -99,32 +99,7 @@
                 </div>
             </div>
         </div>
-
-        {{-- Modal de Pausar e Inicar Vaga --}}
-        <div class="modal fade" id="ModalPausar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            role="dialog" aria-modal="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="modal-titulo"> {{-- Texto vem do js de acordo com o status da vaga --}} </h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div id="modal-body" class="modal-body">
-                        {{-- Texto vem do js de acordo com o status da vaga --}}
-                    </div>
-                    <div class="modal-footer">
-                        <form id="formPausar" action="#" method="post">
-                            @csrf
-                            <input type="hidden" name="id">
-                            <input type="hidden" name="pausada">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    
     </div>
     <script src="{{ asset('js/DataTableVagas.js') }}"></script>
 @endsection
