@@ -15,15 +15,8 @@
 <body>
     <div class="container">
         <h1 class="mt-2">Login</h1>
-        @if ($mensagem = Session::get('erro'))
-            {{ $mensagem }}
-        @endif
 
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                {{ $error }} <br>
-            @endforeach
-        @endif
+        @include('mensagens.mensagem')
 
         <form action="{{ route('login.auth') }}" method="post">
             @csrf

@@ -23,11 +23,8 @@ class CandidatoController extends Controller
 
     public function store(Request $request)
     {
-    
+    // O Cadastro do canditado é feito na Controller de Usuarios
     }
-
-
-
     /**
      * Display the specified resource.
      */
