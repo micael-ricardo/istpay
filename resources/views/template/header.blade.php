@@ -4,9 +4,15 @@
             <i class="bi bi-speedometer"></i> Dashboard
         </a>
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item text-light">
-                Bem vindo, {{ Auth::user()->name }}!
-            </li>
+            @if (auth()->check())
+                <li class="nav-item text-light">
+                    Bem vindo, {{ Auth::user()->name }}!
+                </li>
+            @else
+                <li class="nav-item text-light">
+                    Bem vindo!!
+                </li>
+            @endif
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">

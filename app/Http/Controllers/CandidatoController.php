@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use  App\Models\Candidato;
+
 
 class CandidatoController extends Controller
 {
-
     // Tela de listar
     public function index()
     {
@@ -17,15 +18,15 @@ class CandidatoController extends Controller
     // Tela de cadastro
     public function create()
     {
-        return view('candidatos/cadastro');
+        return view('login.cadastro');
     }
 
-
-    // Inserir dados
     public function store(Request $request)
     {
-        //
+    
     }
+
+
 
     /**
      * Display the specified resource.

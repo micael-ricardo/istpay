@@ -22,18 +22,19 @@ Route::get('/', function () {
     return view('login.form');
 });
 
+Route::post('/usuarios', [UsuarioController::class, 'storeWithCandidato'])->name('usuarios.store');
 Route::resource('usuario', UsuarioController::class);
 
 Route::view('/login', 'login.form')->name('login');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/cadastro', [LoginController::class, 'create'])->name('login.cadastro');
+Route::get('/cadastro', [UsuarioController::class, 'create'])->name('login.cadastro');
 
 Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
 
 // Inserir metodo de autenticação manual
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
     // candidatos
     Route::resource('/candidatos', CandidatoController::class, ['names' => 'candidatos']);
@@ -58,4 +59,4 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->name('vagas.delete');
     // Atualizar Status da vaga
     Route::post('/vagas/{id}/atualizar-status', [VagaController::class, 'atualizarStatus'])->name('vagas.atualizar-status');
-});
+// });

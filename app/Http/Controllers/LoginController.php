@@ -37,9 +37,4 @@ class LoginController extends Controller
 
       return redirect()->route('login');
   }
-
-  public function create()
-  {
-    return view('login.cadastro');
-  }
 }
