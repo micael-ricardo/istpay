@@ -11,7 +11,7 @@
                         </li>
                         <li>
                             <a  href="{{ route('vagas.index') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span>
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Candidatos</span>
                             </a>
                         </li>
                     @endauth

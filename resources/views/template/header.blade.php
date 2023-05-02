@@ -13,7 +13,6 @@
                 <form action="/logout" method="POST">  
                     @csrf
                     <button type="submit" class="nav-link">Sair  <i class="bi bi-box-arrow-right"></i></button>
-                    {{-- <a href="{{ route('logout') }}" class="nav-link">Sair  <i class="bi bi-box-arrow-right"></i></a> --}}
                 </form>
             </li>
         </ul>
