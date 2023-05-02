@@ -18,19 +18,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.form');
 });
 
 Route::resource('usuario', UsuarioController::class);
 
-Route::view('/login', 'login.form')->name('login.form');
+Route::view('/login', 'login.form')->name('login');
 Route::post('/auth',[LoginController::class,'auth'])->name('login.auth');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/cadastro', [LoginController::class, 'create'])->name('login.cadastro');
  
 Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
 
-
+// Inserir metodo de autenticação manual
+Route::middleware(['auth'])->group(function () {
 // vagas
 Route::resource('/vagas', VagaController::class, ['names' => 'vagas']);
 // cadastro
@@ -43,3 +45,5 @@ Route::patch('/vagas/{id}/editar', [VagaController::class, 'update'])->name('vag
 Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->name('vagas.delete');
 // Atualizar Status da vaga
 Route::post('/vagas/{id}/atualizar-status', [VagaController::class, 'atualizarStatus'])->name('vagas.atualizar-status');
+
+});

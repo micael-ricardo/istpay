@@ -1,1 +1,7 @@
-<h1>Dashboard</h1>
+@extends('template/layout')
+@section('title', 'Vagas')
+@section('conteudo')
+
+    <h1>Dashboard</h1>
+
+@endsection
