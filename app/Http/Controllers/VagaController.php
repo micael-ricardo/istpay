@@ -43,7 +43,7 @@ class VagaController extends Controller
     }
 
     // Atualizar
-    public function update(Request $request, string $id)
+    public function update(VagaRequest $request, string $id)
     {
         $vaga = Vaga::findOrFail($id);
 
@@ -67,7 +67,6 @@ class VagaController extends Controller
     public function atualizarStatus(Request $request, $id)
     {
         $vaga = Vaga::findOrFail($id);
-        // dd( $vaga);
         $vaga->pausada = $request->input('pausada') ? true : false;
         $vaga->save();
 
