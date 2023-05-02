@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Models\User;
 use  App\Models\Candidato;
+use App\Http\Requests\UsuarioCandidatoRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -12,17 +13,9 @@ class UsuarioController extends Controller
 {
 
     // Criação do usuário + Candidato
-    public function storeWithCandidato(Request $request)
+    public function storeWithCandidato(UsuarioCandidatoRequest $request)
     {
-        // Validação dos dados do formulário
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:candidatos|unique:users',
-            'telefone' => 'required|string|max:20',
-            'curriculo' => 'required|string',
-            'password' => 'required|string|min:8',
-        ]);
-
+    
         // Criação do usuário
         $user = new User([
             'name' => $request->input('nome'),
@@ -40,9 +33,7 @@ class UsuarioController extends Controller
             'user_id' => $user->id,
         ]);
         $candidato->save();
-
         Auth::login($user);
-
         // Redirecionamento para a página de sucesso
         return redirect()->route('candidatos.index')->with('success', 'Candidato cadastrado com sucesso!');
     }
