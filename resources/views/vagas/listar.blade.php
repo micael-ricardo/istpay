@@ -9,17 +9,64 @@
     <div class="input-group mb-3">
         <div class="input-group-append">
             <a href="{{ route('vagas.create') }}" class="btn btn-success">Adicionar</a>
+            <button class="btn btn-info" type="button" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
+                <i class="fa fa-filter"></i> Filtros
+            </button>
         </div>
     </div>
+    <!--  filtros -->
+    <div class="panel panel-inverse" id="filtro" style=" display: none;">
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label>Data Início:</label>
+                <input type="date" class="form-control" name="data_inicio" id="data_inicio" />
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label>Data Fim:</label>
+                <input type="date" class="form-control" name="data_fim" id="data_fim" />
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label>Titulo:</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" />
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Descricao:</label>
+                <input type="text" class="form-control" name="descricao" id="descricao" />
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label for="tipo">Tipo de Contrato:</label>
+                <select class="form-control" name="tipo" id="tipo">
+                    <option value="">Selecione</option>
+                    <option value="CLT">CLT</option>
+                    <option value="Pessoa Jurídica">Pessoa Jurídica</option>
+                    <option value="Freelancer">Freelancer</option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label for="pausada">Status:</label>
+                <select class="form-control" name="pausada" id="pausada">
+                    <option value="">Selecione</option>
+                    <option value="1">Inativa</option>
+                    <option value="0">Ativa</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
     {{-- Datatable --}}
     <div class="row mt-4">
-        <table id="TableVagas" class="table table-striped table-bordered">
+        <table id="TableVagas" class="table table-striped table-bordered w-100">
             <thead>
                 <tr>
                     <th>Titulo</th>
                     <th>Descricao</th>
                     <th>Tipo</th>
-                    <th>Pausada</th>
+                    <th>Status</th>
                     <th>Data Cadastro</th>
                     <th>Ações</th>
                 </tr>
@@ -70,7 +117,8 @@
                             @csrf
                             <input type="hidden" name="id">
                             <input type="hidden" name="pausada">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar </button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar
+                            </button>
                         </form>
                     </div>
                 </div>

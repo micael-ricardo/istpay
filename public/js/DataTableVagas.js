@@ -31,13 +31,13 @@ $(document).ready(function () {
 
         {
             data: 'pausada',
-            title: 'Pausada',
+            title: 'Status',
             width: "80px",
             render: function (data, type, row) {
                 if (data) {
-                    return '<span class="btn btn-danger btn-sm">Sim</span>';
+                    return '<span class="btn btn-danger btn-sm">Inativa</span>';
                 } else {
-                    return '<span class="btn btn-success btn-sm">Não</span>';
+                    return '<span class="btn btn-success btn-sm">Ativa</span>';
                 }
             },
             className: 'text-center'
@@ -77,9 +77,19 @@ $(document).ready(function () {
     $('#TableVagas').DataTable({
         processing: true,
         serverSide: true,
+        searching:false,
         ajax: {
             url: apiUrl,
             method: 'GET',
+            // filtro
+            data: function (d) {
+                d.data_inicio = $('#data_inicio').val(); 
+                d.data_fim = $('#data_fim').val(); 
+                d.pausada = $('#pausada').val(); 
+                d.tipo = $('#tipo').val(); 
+                d.titulo = $('#titulo').val(); 
+                d.descricao = $('#descricao').val(); 
+            }
         },
         columns: columns,
         responsive: true,
@@ -109,9 +119,16 @@ $(document).ready(function () {
     });
 });
 
+// recarrega tabela com  valor do filtrado
 
+$('#data_inicio,#data_fim,#titulo,#descricao,#pausada, #tipo').on('change', function () {
+    $('#TableVagas').DataTable().ajax.reload(); 
+});
+
+
+// Deletar
 // Adicione um evento de clique ao botão de excluir
-$(document).on("click", ".excluir-vaga", function (e) {
+$(document).on("click", ".excluir-vaga", function (e) { 
     e.preventDefault();
 
     var id = $(this).data('id');
@@ -126,25 +143,6 @@ $(document).on("click", ".excluir-vaga", function (e) {
     // Exiba o modal de exclusão
     $('#ModalDeletar').modal('show');
 });
-
-
-// Adicione um evento de clique ao botão Pause e start
-
-$('#ModalPausar').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var pausada = button.data('pause');
-    var nome = button.data('nome');
-    var modal = $(this);
-    // Inserir texto de acordo com a o status da vaga
-    var titulo = pausada ? 'Iniciar vaga' : 'Pausar vaga';
-    var texto = pausada ? 'Tem certeza que deseja iniciar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?' : 'Tem certeza que deseja pausar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?';
-    modal.find('#modal-titulo').text(titulo);
-    modal.find('#modal-body').html(texto);
-    modal.find('input[name="id"]').val(button.data('id'));
-    modal.find('input[name="pausada"]').val(pausada ? 0 : 1);
-});
-
-
 // Concluir o delete
 $(document).on("submit", "#formExcluir", function (e) {
     e.preventDefault();
@@ -174,6 +172,22 @@ $(document).on("submit", "#formExcluir", function (e) {
             $('#ModalDeletar').modal('hide');
         }
     });
+});
+
+// pause e start
+// Adicione um evento de clique ao botão Pause e start
+$('#ModalPausar').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var pausada = button.data('pause');
+    var nome = button.data('nome');
+    var modal = $(this);
+    // Inserir texto de acordo com a o status da vaga
+    var titulo = pausada ? 'Ativar vaga' : 'Inativar vaga';
+    var texto = pausada ? 'Tem certeza que deseja ativar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?' : 'Tem certeza que deseja inativar a vaga: <b><span id="nome-usuario">' + nome + '</span></b> ?';
+    modal.find('#modal-titulo').text(titulo);
+    modal.find('#modal-body').html(texto);
+    modal.find('input[name="id"]').val(button.data('id'));
+    modal.find('input[name="pausada"]').val(pausada ? 0 : 1);
 });
 
 // Parar ou iniciar vaga
