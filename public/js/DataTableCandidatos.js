@@ -38,9 +38,9 @@ $(document).ready(function () {
             title: 'Ações',
             width: "100px",
             render: function (data, type, row) {
-                var nome = row.titulo;
+                var nome = row.nome;
                 var btnEditar = '<a href="/vagas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
-                var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
+                var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-candidato"><i class="bi bi-trash"></i></button>';
  
                 return btnEditar + ' ' + btnDeletar;
 
@@ -103,7 +103,7 @@ $('#data_inicio,#data_fim,#nome,#telefone,#curriculo, #email').on('change', func
 
 // Deletar
 // Adicione um evento de clique ao botão de excluir
-$(document).on("click", ".excluir-vaga", function (e) { 
+$(document).on("click", ".excluir-candidato", function (e) { 
     e.preventDefault();
 
     var id = $(this).data('id');
@@ -123,7 +123,7 @@ $(document).on("submit", "#formExcluir", function (e) {
     e.preventDefault();
     var form = this;
     function showError() {
-        toastr.error('Ocorreu um erro ao excluir a vaga.');
+        toastr.error('Ocorreu um erro ao excluir a candidato.');
     }
     $.ajax({
         url: form.action,
@@ -131,7 +131,7 @@ $(document).on("submit", "#formExcluir", function (e) {
         data: $(form).serialize(),
         success: function (response, status, xhr) {
             if (xhr.status === 200) {
-                toastr.success('Vaga excluída com sucesso!');
+                toastr.success('Candidato excluída com sucesso!');
                 $('#ModalDeletar').modal('hide');
                 setTimeout(function () {
                     location.reload();

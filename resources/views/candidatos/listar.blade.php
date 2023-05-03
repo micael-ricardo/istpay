@@ -66,39 +66,64 @@
             <tbody>
             </tbody>
         </table>
+    </div>
 
-        <!-- Modal Vagas -->
-        <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel"
-            aria-hidden="true" data-backdrop="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title ml-2" id="vagasModalLabel">Vagas disponíveis</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" class="modal-body">
-                        <select id="vagasSelect" class="form-control select2-container">
-                            <option value=""></option>
-                            @foreach ($vagas as $vaga)
-                                <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}"
-                                    data-tipo-contrato="{{ $vaga->tipo }}">{{ $vaga->titulo }}</option>
-                            @endforeach
-                        </select>
-                        <div id="vagaDescricao"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <form method="POST"
-                            action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
-                            @csrf
-                            <input type="hidden" name="vaga_id" id="vaga_id" value="">
-                            <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
-                            </button>
-                        </form>
-                    </div>
+    <!-- Modal De Delete -->
+    <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Excluir Candidato</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    Tem certeza que deseja excluir candidato: <b><span id="nome-usuario"> </span></b> ? Esta ação
+                    não pode ser desfeita.
+                </div>
+                <div class="modal-footer">
+                    <form id="formExcluir" action="{{ route('candidatos.delete', ':id') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal Vagas -->
+    <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ml-2" id="vagasModalLabel">Vagas disponíveis</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" class="modal-body">
+                    <select id="vagasSelect" class="form-control select2-container">
+                        <option value=""></option>
+                        @foreach ($vagas as $vaga)
+                            <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}"
+                                data-tipo-contrato="{{ $vaga->tipo }}">{{ $vaga->titulo }}</option>
+                        @endforeach
+                    </select>
+                    <div id="vagaDescricao"></div>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST"
+                        action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
+                        @csrf
+                        <input type="hidden" name="vaga_id" id="vaga_id" value="">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('js/DataTableCandidatos.js') }}"></script>
     <script src="{{ asset('js/Candidatos.js') }}"></script>
 @endsection

@@ -69,6 +69,8 @@ class CandidatoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $candidato = Candidato::findOrFail($id);
+        $candidato->delete();
+        return response()->json(['success' => true]);
     }
 }
