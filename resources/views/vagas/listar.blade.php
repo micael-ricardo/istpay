@@ -8,9 +8,9 @@
     <!-- adc -->
     <div class="input-group mb-3">
         <div class="input-group-append">
-            <a href="{{ route('vagas.create') }}" class="btn btn-success">Adicionar</a>
+            <a href="{{ route('vagas.create') }}" class="btn btn-success"><i class="bi bi-plus"></i> Adicionar</a>
             <button class="btn btn-info" type="button" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
-                <i class="fa fa-filter"></i> Filtros
+                <i class="bi bi-funnel"></i> Filtros
             </button>
         </div>
     </div>
@@ -117,7 +117,7 @@
                             @csrf
                             <input type="hidden" name="id">
                             <input type="hidden" name="pausada">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar
+                            <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
                             </button>
                         </form>
                     </div>

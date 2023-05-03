@@ -41,4 +41,5 @@ class VagaController extends Controller
         // Retorna os dados filtrados se ouver filtro
         return DataTables::of($query)->toJson();
     }
+    
 }

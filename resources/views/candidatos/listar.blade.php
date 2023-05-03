@@ -8,9 +8,11 @@
     <!-- adc -->
     <div class="input-group mb-3">
         <div class="input-group-append">
-            <a href="{{ route('candidatos.create') }}" class="btn btn-success">Adicionar</a>
-            <button class="btn btn-info" type="button" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
-                <i class="fa fa-filter"></i> Filtros
+            <a href="{{ route('candidatos.create') }}" class="btn btn-success"><i class="bi bi-plus"></i> Adicionar</a>
+            <button type="button" data-bs-target="#vagasModal" data-bs-toggle="modal" class="btn btn-primary excluir-vaga"><i
+                    class="bi bi-plus"></i> Vagas</button>
+            <button type="button" class="btn btn-info" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
+                <i class="bi bi-funnel"></i> Filtros
             </button>
         </div>
     </div>
@@ -75,31 +77,35 @@
             </tbody>
         </table>
 
-        <!-- Modal De Delete -->
-        <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            role="dialog" aria-modal="true">
-            <div class="modal-dialog">
+        <!-- Modal Vagas -->
+        <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="exampleModalLabel">Excluir vaga</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title ml-2" id="vagasModalLabel">Vagas disponíveis</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id="modal-body" class="modal-body">
-                        Tem certeza que deseja excluir a vaga: <b><span id="nome-usuario"> </span></b> ? Esta ação
-                        não pode ser desfeita.
+                    <div class="modal-body" class="modal-body">
+                        <select id="vagasSelect" class="form-control select2-container">
+                            <option value=""></option>
+                            @foreach ($vagas as $vaga)
+                                <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}" data-tipo-contrato="{{ $vaga->tipo}}">{{ $vaga->titulo }}</option>
+                            @endforeach
+                        </select>
+                        <div id="vagaDescricao"></div>
                     </div>
                     <div class="modal-footer">
                         <form id="formExcluir" action="{{ route('vagas.delete', ':id') }}" method="post">
                             @csrf
-                            @method('DELETE')
                             <input type="hidden" name="id">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    
     </div>
-    <script src="{{ asset('js/DataTableVagas.js') }}"></script>
+
+    <script src="{{ asset('js/Candidatos.js') }}"></script>
 @endsection
