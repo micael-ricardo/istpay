@@ -81,10 +81,10 @@
                 <div class="modal-body" class="modal-body">
                     <select id="vagasSelect" class="form-control select2-container">
                         <option value=""></option>
-                        {{-- @foreach ($vagas as $vaga) --}}
-                            {{-- <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}"
-                                data-tipo-contrato="{{ $vaga->tipo }}">{{ $vaga->titulo }}</option> --}}
-                        {{-- @endforeach --}}
+                        @foreach ($vagas as $vaga)
+                            <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}"
+                                data-tipo-contrato="{{ $vaga->tipo }}">{{ $vaga->titulo }}</option>
+                        @endforeach
                     </select>
                     <div id="vagaDescricao"></div>
                 </div>
@@ -102,16 +102,16 @@
     </div>
 
         <!-- Modal De Delete -->
-        {{-- <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         role="dialog" aria-modal="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">Excluir Candidato</h2>
+                    <h2 class="modal-title" id="exampleModalLabel">Remover Candidatura</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="modal-body" class="modal-body">
-                    Tem certeza que deseja excluir candidato: <b><span id="nome-usuario"> </span></b> ? Esta ação
+                    Tem certeza que deseja eRemover Candidatura na vaga: <b><span id="nome-usuario"> </span></b> ? Esta ação
                     não pode ser desfeita.
                 </div>
                 <div class="modal-footer">
@@ -124,7 +124,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <script src="{{ asset('js/DataTableInscricao.js') }}"></script>
     <script src="{{ asset('js/Candidatos.js') }}"></script>

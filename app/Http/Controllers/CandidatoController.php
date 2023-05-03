@@ -40,7 +40,7 @@ class CandidatoController extends Controller
         ]);
 
         // Redireciona de volta para a página de detalhes da vaga
-        return redirect()->route('candidatos.index')->with('success', 'Registro inserido com sucesso!');
+        return redirect()->route('adm.dashboard')->with('success', 'Registro inserido com sucesso!');
     }
 
     /**
