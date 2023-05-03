@@ -74,12 +74,12 @@ $(document).ready(function () {
             width: "100px",
             render: function (data, type, row) {
                 var nome = row.titulo;
-                var btnEditar = '<a href="/vagas/' + data + '/edit" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i></a>';
                 var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
     
-                return btnEditar + ' ' + btnDeletar;
+                return btnDeletar;
 
             },
+            className: 'text-center'
         },
     ];
 
@@ -158,7 +158,7 @@ $(document).on("submit", "#formExcluir", function (e) {
     e.preventDefault();
     var form = this;
     function showError() {
-        toastr.error('Ocorreu um erro ao excluir a vaga.');
+        toastr.error('Ocorreu um erro ao remover candidatura.');
     }
     $.ajax({
         url: form.action,
@@ -166,7 +166,7 @@ $(document).on("submit", "#formExcluir", function (e) {
         data: $(form).serialize(),
         success: function (response, status, xhr) {
             if (xhr.status === 200) {
-                toastr.success('Vaga excluída com sucesso!');
+                toastr.success('Candidatura removida com sucesso!');
                 $('#ModalDeletar').modal('hide');
                 setTimeout(function () {
                     location.reload();
