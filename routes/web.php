@@ -34,7 +34,7 @@ Route::get('/cadastro', [UsuarioController::class, 'create'])->name('login.cadas
 Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
 
 // Inserir metodo de autenticação manual
-// Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     // candidatos
     Route::resource('/candidatos', CandidatoController::class, ['names' => 'candidatos']);
@@ -59,4 +59,4 @@ Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.d
     Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->name('vagas.delete');
     // Atualizar Status da vaga
     Route::post('/vagas/{id}/atualizar-status', [VagaController::class, 'atualizarStatus'])->name('vagas.atualizar-status');
-// });
+});

@@ -34,7 +34,10 @@ class CandidatoController extends Controller
         $candidato = Candidato::find($candidatoId);
         $vaga = Vaga::find($vagaId);
 
-        $candidato->vagas()->attach($vaga->id);
+        $candidato->vagas()->attach($vaga->id, [
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         // Redireciona de volta para a página de detalhes da vaga
         return redirect()->route('candidatos.index')->with('success', 'Registro inserido com sucesso!');

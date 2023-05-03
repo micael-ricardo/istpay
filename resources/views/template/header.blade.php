@@ -2,7 +2,7 @@
     <div class="container-fluid">
         @auth
         <a class="navbar-brand" href="{{ route('adm.dashboard') }}">
-            <i class="bi bi-speedometer"></i> Dashboard
+            <i class="bi bi-speedometer"></i> Minhas Candidaturas
         </a>
         @endauth
         <ul class="navbar-nav ms-auto">
