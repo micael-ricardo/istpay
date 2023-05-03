@@ -95,7 +95,7 @@
                         <div id="vagaDescricao"></div>
                     </div>
                     <div class="modal-footer">
-                        <form id="formExcluir" action="{{ route('vagas.delete', ':id') }}" method="post">
+                        <form method="POST" action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
                             @csrf
                             <input type="hidden" name="id">
                             <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar

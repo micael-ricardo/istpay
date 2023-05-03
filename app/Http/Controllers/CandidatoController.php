@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use  App\Models\Vaga;
+use App\Models\Candidato;
+
+use Illuminate\Support\Facades\Auth;
 
 
 class CandidatoController extends Controller
@@ -12,7 +15,7 @@ class CandidatoController extends Controller
     // Tela de listar
     public function index()
     {
-
+    
         $vagas = Vaga::where('pausada', false)->get();
         return view('candidatos/listar', ['vagas' => $vagas]);
     }
@@ -25,7 +28,16 @@ class CandidatoController extends Controller
 
     public function store(Request $request)
     {
-        // O Cadastro do canditado é feito na Controller de Usuarios
+          // O Cadastro do canditado é feito na Controller de Usuarios
+        // **Aqui fazemos o cadastro na tabela candidato_vaga
+        $CandidatoId =  Auth::user()->Candidato->id;
+
+
+      
+
+
+
+
     }
     /**
      * Display the specified resource.

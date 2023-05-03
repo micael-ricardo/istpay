@@ -16,4 +16,9 @@ class Candidato extends Model
         'curriculo',
         'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
