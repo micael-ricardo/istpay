@@ -1,8 +1,10 @@
 <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
+        @auth
         <a class="navbar-brand" href="{{ route('adm.dashboard') }}">
             <i class="bi bi-speedometer"></i> Dashboard
         </a>
+        @endauth
         <ul class="navbar-nav ms-auto">
             @if (auth()->check())
                 <li class="nav-item text-light">

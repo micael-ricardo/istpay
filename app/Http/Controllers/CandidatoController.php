@@ -28,23 +28,16 @@ class CandidatoController extends Controller
 
     public function store(Request $request)
     {
-        // Recupera o ID da vaga a partir do formulário
+
         $vagaId = $request->input('vaga_id');
-
-        // Recupera o ID do candidato a partir do usuário autenticado
         $candidatoId = Auth::user()->candidato->id;
-
-        // Recupera o modelo Candidato correspondente
         $candidato = Candidato::find($candidatoId);
-
-        // Recupera o modelo Vaga correspondente
         $vaga = Vaga::find($vagaId);
 
-        // Adiciona uma nova entrada na tabela candidato_vaga
         $candidato->vagas()->attach($vaga->id);
 
         // Redireciona de volta para a página de detalhes da vaga
-        return redirect()->route('candidatos/listar');
+        return redirect()->route('candidatos.index')->with('success', 'Registro inserido com sucesso!');
     }
 
     /**

@@ -7,7 +7,7 @@
                     @auth
                         <li>
                             <a  href="{{ route('vagas.index') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-coin"></i><span class="ms-1  d-sm-inline">Vagas</span></a>
+                                <i class="fs-4 bi-door-open"></i><span class="ms-1  d-sm-inline">Vagas</span></a>
                         </li>
                         <li>
                             <a  href="{{ route('candidatos.index') }}" class="nav-link px-0 align-middle">
