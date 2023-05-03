@@ -8,7 +8,7 @@
     <!-- adc -->
     <div class="input-group mb-3">
         <div class="input-group-append"> 
-            <button type="button" data-bs-target="#vagasModal" data-bs-toggle="modal" class="btn btn-success excluir-vaga"><i
+            <button type="button" data-bs-target="#vagasModal" data-bs-toggle="modal" class="btn btn-success"><i
                     class="bi bi-plus"></i> Adicionar </button>
             <button type="button" class="btn btn-info" id="div-filtro" onclick="return($('#filtro').toggle('fade'))">
                 <i class="bi bi-funnel"></i> Filtros

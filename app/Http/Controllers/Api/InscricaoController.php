@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\vagas_candidato_view;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class InscricaoController extends Controller
 {
@@ -35,6 +36,10 @@ class InscricaoController extends Controller
         if ($request->has('data_fim') && $request->input('data_fim') !== null) {
             $query->whereDate('created_at', '<=', $request->input('data_fim'));
         }
+
+        $user = auth()->user();
+        $candidato_id = $user->candidato->id;
+        $query->where('candidato_id', $candidato_id);
 
         // Retorna os dados filtrados se ouver filtro
         return DataTables::of($query)->toJson();
