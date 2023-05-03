@@ -15,7 +15,7 @@ class UsuarioController extends Controller
     // Criação do usuário + Candidato
     public function storeWithCandidato(UsuarioCandidatoRequest $request)
     {
-    
+
         // Criação do usuário
         $user = User::create([
             'name' => $request->input('nome'),
@@ -35,8 +35,13 @@ class UsuarioController extends Controller
 
         $candidato->save();
         Auth::login($user);
-        // Redirecionamento para a página de sucesso
-        return redirect()->route('candidatos.index')->with('success', 'Candidato cadastrado com sucesso!');
+      
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Candidato cadastrado com sucesso! Por favor, faça login.');
     }
 
     public function create()
