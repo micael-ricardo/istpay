@@ -56,7 +56,8 @@ class CandidatoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $candidato = Candidato::findOrFail($id);
+        return view('login.cadastro', compact('candidato'));
     }
 
     /**
