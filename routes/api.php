@@ -19,10 +19,8 @@ use App\Http\Controllers\Api\InscricaoController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth')->group(function () {
+    Route::apiResource('vagas', VagaController::class);
+    Route::apiResource('candidatos', CandidatoController::class);
+    Route::apiResource('candidatura', InscricaoController::class);
 });
-
-Route::apiResource('vagas', VagaController::class);
-Route::apiResource('candidatos', CandidatoController::class);
-Route::apiResource('candidatura', InscricaoController::class);
