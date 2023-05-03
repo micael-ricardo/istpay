@@ -9,10 +9,14 @@ class Vaga extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
-        'titulo', 
-        'descricao', 
-        'tipo', 
-    ]; 
+    protected $fillable = [
+        'titulo',
+        'descricao',
+        'tipo',
+    ];
 
+    public function candidatos()
+    {
+        return $this->belongsToMany(Candidato::class);
+    }
 }

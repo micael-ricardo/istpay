@@ -15,7 +15,7 @@ class CandidatoController extends Controller
     // Tela de listar
     public function index()
     {
-    
+
         $vagas = Vaga::where('pausada', false)->get();
         return view('candidatos/listar', ['vagas' => $vagas]);
     }
@@ -28,17 +28,25 @@ class CandidatoController extends Controller
 
     public function store(Request $request)
     {
-          // O Cadastro do canditado é feito na Controller de Usuarios
-        // **Aqui fazemos o cadastro na tabela candidato_vaga
-        $CandidatoId =  Auth::user()->Candidato->id;
+        // Recupera o ID da vaga a partir do formulário
+        $vagaId = $request->input('vaga_id');
 
+        // Recupera o ID do candidato a partir do usuário autenticado
+        $candidatoId = Auth::user()->candidato->id;
 
-      
+        // Recupera o modelo Candidato correspondente
+        $candidato = Candidato::find($candidatoId);
 
+        // Recupera o modelo Vaga correspondente
+        $vaga = Vaga::find($vagaId);
 
+        // Adiciona uma nova entrada na tabela candidato_vaga
+        $candidato->vagas()->attach($vaga->id);
 
-
+        // Redireciona de volta para a página de detalhes da vaga
+        return redirect()->route('candidatos/listar');
     }
+
     /**
      * Display the specified resource.
      */

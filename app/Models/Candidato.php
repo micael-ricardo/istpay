@@ -21,4 +21,9 @@ class Candidato extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function vagas()
+    {
+        return $this->belongsToMany(Vaga::class);
+    }
 }

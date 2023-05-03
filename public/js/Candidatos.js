@@ -15,8 +15,10 @@ $(document).ready(function() {
             var tipo_contrato = vaga.data('tipo-contrato');
 
             $('#vagaDescricao').html('<p><strong>Descrição:</strong> ' + descricao + '</p><p><strong>Tipo de contrato:</strong> ' + tipo_contrato + '</p>');
+            $('#vaga_id').val(id);
         } else {
             $('#vagaDescricao').empty();
+            $('#vaga_id').val('');
         }
     });
 });

@@ -97,7 +97,7 @@
                     <div class="modal-footer">
                         <form method="POST" action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
                             @csrf
-                            <input type="hidden" name="id">
+                            <input type="hidden" name="vaga_id" id="vaga_id" value="">
                             <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
                             </button>
                         </form>
