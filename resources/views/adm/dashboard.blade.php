@@ -51,12 +51,15 @@
 
     {{-- Datatable --}}
     <div class="row mt-4">
-        <table id="TableVagas" class="table table-striped table-bordered w-100">
+        <table id="TableVagas" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Nome</th>
+                    <th>Nome</th>
                     <th>Email</th>
                     <th>Telefone</th>
+                    <th>Curriculo</th>
                     <th>Curriculo</th>
                     <th>Data Cadastro</th>
                     <th>Ações</th>
@@ -65,31 +68,6 @@
             <tbody>
             </tbody>
         </table>
-    </div>
-
-    <!-- Modal De Delete -->
-    <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-        role="dialog" aria-modal="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">Excluir Candidato</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div id="modal-body" class="modal-body">
-                    Tem certeza que deseja excluir candidato: <b><span id="nome-usuario"> </span></b> ? Esta ação
-                    não pode ser desfeita.
-                </div>
-                <div class="modal-footer">
-                    <form id="formExcluir" action="{{ route('candidatos.delete', ':id') }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Modal Vagas -->
     <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel"
@@ -123,6 +101,31 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/DataTableCandidatos.js') }}"></script>
+        <!-- Modal De Delete -->
+        {{-- <div class="modal fade" id="ModalDeletar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Excluir Candidato</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    Tem certeza que deseja excluir candidato: <b><span id="nome-usuario"> </span></b> ? Esta ação
+                    não pode ser desfeita.
+                </div>
+                <div class="modal-footer">
+                    <form id="formExcluir" action="{{ route('candidatos.delete', ':id') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+    <script src="{{ asset('js/DataTableInscricao.js') }}"></script>
     <script src="{{ asset('js/Candidatos.js') }}"></script>
 @endsection
