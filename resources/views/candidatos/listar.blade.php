@@ -30,32 +30,22 @@
             </div>
 
             <div class="form-group col-sm-4">
-                <label>Titulo:</label>
-                <input type="text" class="form-control" name="titulo" id="titulo" />
+                <label>Nome:</label>
+                <input type="text" class="form-control" name="nome" id="nome" />
             </div>
             <div class="form-group col-sm-4">
-                <label>Descricao:</label>
-                <input type="text" class="form-control" name="descricao" id="descricao" />
+                <label>Email:</label>
+                <input type="text" class="form-control" name="email" id="email" />
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Telefone:</label>
+                <input type="tel" class="form-control" name="telefone" id="telefone" />
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Currículo:</label>
+                <input type="text" class="form-control" name="curriculo" id="curriculo" />
             </div>
 
-            <div class="form-group col-sm-4">
-                <label for="tipo">Tipo de Contrato:</label>
-                <select class="form-control" name="tipo" id="tipo">
-                    <option value="">Selecione</option>
-                    <option value="CLT">CLT</option>
-                    <option value="Pessoa Jurídica">Pessoa Jurídica</option>
-                    <option value="Freelancer">Freelancer</option>
-                </select>
-            </div>
-
-            <div class="form-group col-sm-4">
-                <label for="pausada">Status:</label>
-                <select class="form-control" name="pausada" id="pausada">
-                    <option value="">Selecione</option>
-                    <option value="1">Inativa</option>
-                    <option value="0">Ativa</option>
-                </select>
-            </div>
         </div>
     </div>
 
@@ -65,10 +55,10 @@
         <table id="TableVagas" class="table table-striped table-bordered w-100">
             <thead>
                 <tr>
-                    <th>Titulo</th>
-                    <th>Descricao</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Curriculo</th>
                     <th>Data Cadastro</th>
                     <th>Ações</th>
                 </tr>
@@ -78,24 +68,27 @@
         </table>
 
         <!-- Modal Vagas -->
-        <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal fade" id="vagasModal" tabindex="-1" role="dialog" aria-labelledby="vagasModalLabel"
+            aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title ml-2" id="vagasModalLabel">Vagas disponíveis</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" class="modal-body">
                         <select id="vagasSelect" class="form-control select2-container">
                             <option value=""></option>
                             @foreach ($vagas as $vaga)
-                                <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}" data-tipo-contrato="{{ $vaga->tipo}}">{{ $vaga->titulo }}</option>
+                                <option value="{{ $vaga->id }}" data-descricao="{{ $vaga->descricao }}"
+                                    data-tipo-contrato="{{ $vaga->tipo }}">{{ $vaga->titulo }}</option>
                             @endforeach
                         </select>
                         <div id="vagaDescricao"></div>
                     </div>
                     <div class="modal-footer">
-                        <form method="POST" action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
+                        <form method="POST"
+                            action="{{ isset($candidato) ? route('candidatos.atualizar', $candidato->id) : route('candidatos.store') }}">
                             @csrf
                             <input type="hidden" name="vaga_id" id="vaga_id" value="">
                             <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar
@@ -106,6 +99,6 @@
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('js/DataTableCandidatos.js') }}"></script>
     <script src="{{ asset('js/Candidatos.js') }}"></script>
 @endsection

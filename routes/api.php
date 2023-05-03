@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VagaController;
+use App\Http\Controllers\Api\CandidatoController;
 
 
 
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('vagas', VagaController::class);
+Route::apiResource('candidatos', CandidatoController::class);
