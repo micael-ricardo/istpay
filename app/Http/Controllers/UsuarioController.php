@@ -54,11 +54,31 @@ class UsuarioController extends Controller
         //
     }
 
-
-    public function update(Request $request, string $id)
+    public function update(Request $request, $candidatoId)
     {
-        //
+        $candidato = Candidato::findOrFail($candidatoId);
+        $user = User::findOrFail($request->input('userId'));
+
+        // atualiza o usuário
+        $user->name = $request->input('nome');
+        $user->email = $request->input('email');
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+    
+        // atualiza o candidato
+        $candidato->nome = $request->input('nome');
+        $candidato->email = $request->input('email');
+        $candidato->telefone = $request->input('telefone');
+        $candidato->curriculo = $request->input('curriculo');
+        $candidato->save();
+    
+        return redirect()->route('candidatos.index')->with('success', 'Candidato atualizado com sucesso!');
     }
+    
+
+ 
 
 
     public function destroy(string $id)

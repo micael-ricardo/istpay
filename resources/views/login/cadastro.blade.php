@@ -17,6 +17,7 @@
         @csrf
         @if (isset($candidato))
             @method('PATCH')
+            <input type="hidden" name="userId" value="{{ $candidato->user_id }}">
         @endif
 
         <div class="row mt-4">
