@@ -22,24 +22,24 @@ Route::get('/', function () {
     return view('login.form');
 });
 
+//  cadastra Usuario Candidato
 Route::post('/usuarios', [UsuarioController::class, 'storeWithCandidato'])->name('usuarios.store');
-
 Route::resource('usuario', UsuarioController::class);
-
+Route::get('/cadastro', [UsuarioController::class, 'create'])->name('login.cadastro');
+// Login + auth
 Route::view('/login', 'login.form')->name('login');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+// logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('/cadastro', [UsuarioController::class, 'create'])->name('login.cadastro');
-
-Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
 
 // Inserir metodo de autenticação manual
 Route::middleware(['auth'])->group(function () {
 
+    // tela que lista as vagas cadastradas do usuario logado
+    Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
     Route::delete('/dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.delete');
-    
 
+    //  Edita Usuario Candidato
     Route::patch('/usuarios/{id}/editar', [UsuarioController::class, 'update'])->name('usuarios.atualizar');
 
     // candidatos
@@ -48,8 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/candidatos/cadastro', [CandidatoController::class, 'create'])->name('candidatos.cadastro');
     // editar
     Route::get('/candidatos/{id}/editar', [CandidatoController::class, 'edit'])->name('candidatos.editar');
-    // Atualizar
-    Route::patch('/candidatos/{id}/editar', [CandidatoController::class, 'update'])->name('candidatos.atualizar');
     // Deletar
     Route::delete('/candidatos/{id}', [CandidatoController::class, 'destroy'])->name('candidatos.delete');
 
