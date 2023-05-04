@@ -11,7 +11,8 @@
     </div>
 
     @include('mensagens.mensagem')
-    <form method="POST" action="{{ route('usuarios.store') }}">
+    <form method="POST"
+        action="{{ isset($candidato) ? route('usuarios.atualizar', $candidato->id) : route('usuarios.store') }}">
         {{-- previne ataques CSRF --}}
         @csrf
         @if (isset($candidato))
@@ -34,7 +35,17 @@
                 <input type="email" class="form-control" name="email" id="email"
                     value="{{ old('email', isset($candidato) ? $candidato->email : '') }}" required>
             </div>
-            <div class="form-group col-md-6">
+
+            @if (isset($candidato))
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="alterarSenha">Deseja alterar senha?</label>
+                        <input type="checkbox" value="1" onclick="$('.senha').toggle()" name="alterarSenha"
+                            id="alterarSenha">
+                    </div>
+                </div>
+            @endif
+            <div class="form-group col-md-6 senha" {{ isset($candidato) ? 'style=display:none;' : '' }}>
                 <label for="password">senha:</label>
                 <input type="password" class="form-control" name="password" id="password" autocomplete="new-password"
                     required>
@@ -52,4 +63,21 @@
                     Cancelar</a>
             </div>
     </form>
+
+    <script>
+
+$(document).ready(function () {
+
+var $checkbox = $('#alterarSenha');
+$('#password').removeAttr('required');
+$checkbox.click(function () {
+    if ($checkbox.is(':checked')) {
+        $('#password').attr('required', true);
+    } else {
+        $('#password').removeAttr('required');
+    }
+});
+});
+    </script>
+
 @endsection

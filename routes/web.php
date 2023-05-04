@@ -23,6 +23,7 @@ Route::get('/', function () {
 });
 
 Route::post('/usuarios', [UsuarioController::class, 'storeWithCandidato'])->name('usuarios.store');
+
 Route::resource('usuario', UsuarioController::class);
 
 Route::view('/login', 'login.form')->name('login');
@@ -35,6 +36,9 @@ Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.d
 
 // Inserir metodo de autenticação manual
 Route::middleware(['auth'])->group(function () {
+    
+
+    Route::patch('/usuarios/{id}/editar', [UsuarioController::class, 'update'])->name('usuarios.atualizar');
 
     // candidatos
     Route::resource('/candidatos', CandidatoController::class, ['names' => 'candidatos']);
