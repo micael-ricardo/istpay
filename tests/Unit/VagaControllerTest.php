@@ -2,12 +2,21 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 use App\Http\Controllers\VagaController;
 use App\Http\Requests\VagaRequest;
 
 class VagaControllerTest extends TestCase
 {
+    use RefreshDatabase, WithFaker;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutMiddleware();
+    }
 
     public function testStore()
     {
