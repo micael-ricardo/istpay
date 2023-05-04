@@ -23,3 +23,5 @@ Agora acesse http://localhost para ver a aplicação.
 
 Os testes utilizam um banco de dados SQLite em memória, então não é necessário configurar nenhuma credencial.
 
+Comando utilizado para fazer o teste sail artisan test tests/Unit
+
