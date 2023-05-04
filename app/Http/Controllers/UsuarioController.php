@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use  App\Models\User;
 use  App\Models\Candidato;
 use App\Http\Requests\UsuarioCandidatoRequest;
+use App\Http\Requests\UpdateUsuarioCandidatoRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -54,7 +55,7 @@ class UsuarioController extends Controller
         //
     }
 
-    public function update(Request $request, $candidatoId)
+    public function update(UpdateUsuarioCandidatoRequest $request, $candidatoId)
     {
         $candidato = Candidato::findOrFail($candidatoId);
         $user = User::findOrFail($request->input('userId'));

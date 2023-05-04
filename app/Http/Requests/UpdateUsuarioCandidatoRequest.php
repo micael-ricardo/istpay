@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateUsuarioCandidatoRequest extends FormRequest
 {
@@ -20,21 +20,25 @@ class UpdateUsuarioCandidatoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-      public function rules(): array
+    public function rules(): array
     {
 
-        $userId = Auth::id();
+        $candidatoId = $this->route('candidato');
+        $userId = $this->input('userId');
 
         return [
             'nome' => 'required',
-            'email' => 'required|email|unique:users,email,' .  $userId,
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($userId),
+            ],
             'telefone' => 'required',
-            'curriculo' => 'required|string',
-            'password' =>  'nullable|min:8|confirmed'
+            'curriculo' => ['required', 'string', 'max:2000'],
+            'password' => 'nullable|min:8',
         ];
-
     }
-        public function messages(): array
+    public function messages(): array
     {
         return [
             'nome.required' => 'O campo de nome é obrigatório.',
