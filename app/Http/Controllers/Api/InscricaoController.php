@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\vagas_candidato_view;
+use App\Models\view_candidato_vaga;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +12,7 @@ class InscricaoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = vagas_candidato_view::query();
+        $query = view_candidato_vaga::query();
 
         // Filtros
 

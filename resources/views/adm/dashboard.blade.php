@@ -55,12 +55,11 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Nome</th>
-                    <th>Nome</th>
-                    <th>Email</th>
                     <th>Telefone</th>
-                    <th>Curriculo</th>
-                    <th>Curriculo</th>
+                    <th>Vaga</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
                     <th>Data Cadastro</th>
                     <th>Ações</th>
                 </tr>

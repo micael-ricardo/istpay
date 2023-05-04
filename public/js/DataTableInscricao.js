@@ -25,12 +25,6 @@ $(document).ready(function () {
 
         },
         {
-            data: 'curriculo',
-            title: 'Currículo',
-            width: "350px",
-
-        },
-        {
             data: 'tipo',
             title: 'Tipo',
             width: "100px",
