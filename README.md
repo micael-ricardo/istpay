@@ -5,20 +5,15 @@ Este é um sistema de CRUD de vagas e candidatos desenvolvido em Laravel Sail.
 ## Começando
 
 Para começar, clone este repositório e instale as dependências:
-git clone https://github.com/micael-ricardo/istpay
-cd istpay
-./vendor/bin/sail up
-se der erro rode 
-composer require laravel/sail --dev
-e depois rode ./vendor/bin/sail up
-Isso irá iniciar o ambiente Laravel Sail com MySQL, PostgreSQL e Redis.
-Renomeie o arquivo .env.example para .env e defina as credenciais do banco de dados.
-Execute as migrações:
-./vendor/bin/sail artisan migrate
-Execute os seeders (opcional):
-./vendor/bin/sail artisan db:seed
-Para rodar a aplicação:
-./vendor/bin/sail artisan serve
+<p>Abra o termial na pasta onde deseja instalar o projeto: git clone https://github.com/micael-ricardo/istpay
+<p>Depois entre na pasta do projeto com o comando: cd istpay
+<p>Na pasta raiz execute o comando: ./vendor/bin/sail up
+<p>se der erro rode :  composer require laravel/sail --dev e depois rode ./vendor/bin/sail up
+<p> Isso irá iniciar o ambiente Laravel Sail com MySQL, PostgreSQL e Redis.
+<p>Renomeie o arquivo .env.example para .env e defina as credenciais do banco de dados.
+<p>Execute as migrações: ./vendor/bin/sail artisan migrate
+<p> Execute os seeders (opcional): ./vendor/bin/sail artisan db:seed
+<p>Para rodar a aplicação: ./vendor/bin/sail up -d
 Agora acesse http://localhost para ver a aplicação.
 
 ## Testes
