@@ -54,15 +54,6 @@ $(document).ready(function () {
             className: 'text-center'
         },
         {
-            data: 'created_at',
-            title: 'Data Cadastro',
-            width: "120px",
-            render: function (data, type, row) {
-                var dataFormatada = moment(data).format('DD/MM/YYYY HH:mm');
-                return dataFormatada;
-            }
-        },
-        {
             data: 'id',
             title: 'Ações',
             width: "100px",

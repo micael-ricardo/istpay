@@ -19,30 +19,30 @@
     <div class="panel panel-inverse" id="filtro" style=" display: none;">
         <div class="row">
             <div class="form-group col-sm-4">
-                <label>Data Início:</label>
-                <input type="date" class="form-control" name="data_inicio" id="data_inicio" />
+                <label>Titulo:</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" />
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Descricao:</label>
+                <input type="text" class="form-control" name="descricao" id="descricao" />
             </div>
 
-            <div class="form-group col-sm-4">
-                <label>Data Fim:</label>
-                <input type="date" class="form-control" name="data_fim" id="data_fim" />
+            <div class="form-group col-sm-2">
+                <label for="tipo">Tipo de Contrato:</label>
+                <select class="form-control" name="tipo" id="tipo">
+                    <option value="">Selecione</option>
+                    <option value="CLT">CLT</option>
+                    <option value="Pessoa Jurídica">Pessoa Jurídica</option>
+                    <option value="Freelancer">Freelancer</option>
+                </select>
             </div>
-
-            <div class="form-group col-sm-4">
-                <label>Nome:</label>
-                <input type="text" class="form-control" name="nome" id="nome" />
-            </div>
-            <div class="form-group col-sm-4">
-                <label>Email:</label>
-                <input type="text" class="form-control" name="email" id="email" />
-            </div>
-            <div class="form-group col-sm-4">
-                <label>Telefone:</label>
-                <input type="tel" class="form-control" name="telefone" id="telefone" />
-            </div>
-            <div class="form-group col-sm-4">
-                <label>Currículo:</label>
-                <input type="text" class="form-control" name="curriculo" id="curriculo" />
+            <div class="form-group col-sm-2">
+                <label for="pausada">Status:</label>
+                <select class="form-control" name="pausada" id="pausada">
+                    <option value="">Selecione</option>
+                    <option value="1">Inativa</option>
+                    <option value="0">Ativa</option>
+                </select>
             </div>
 
         </div>
@@ -60,7 +60,6 @@
                     <th>Descrição</th>
                     <th>Tipo</th>
                     <th>Status</th>
-                    <th>Data Cadastro</th>
                     <th>Ações</th>
                 </tr>
             </thead>
