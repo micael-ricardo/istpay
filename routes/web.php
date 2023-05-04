@@ -36,6 +36,8 @@ Route::get('/adm/dashboard', [DashboardController::class, 'index'])->name('adm.d
 
 // Inserir metodo de autenticação manual
 Route::middleware(['auth'])->group(function () {
+
+    Route::delete('/dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.delete');
     
 
     Route::patch('/usuarios/{id}/editar', [UsuarioController::class, 'update'])->name('usuarios.atualizar');

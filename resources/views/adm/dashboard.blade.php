@@ -114,7 +114,7 @@
                     não pode ser desfeita.
                 </div>
                 <div class="modal-footer">
-                    <form id="formExcluir" action="{{ route('candidatos.delete', ':id') }}" method="post">
+                    <form id="formExcluir" action="{{ route('dashboard.delete', ':id') }}" method="post">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id">

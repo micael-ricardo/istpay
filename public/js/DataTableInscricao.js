@@ -67,8 +67,9 @@ $(document).ready(function () {
             title: 'Ações',
             width: "100px",
             render: function (data, type, row) {
+
                 var nome = row.titulo;
-                var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + data + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
+                var btnDeletar = '<button type="button" data-bs-target="#ModalDeletar" data-bs-toggle="modal" data-id="' + row.cv_id + '" data-nome="' + nome + '" class="btn btn-danger btn-sm excluir-vaga"><i class="bi bi-trash"></i></button>';
     
                 return btnDeletar;
 
